@@ -16,4 +16,4 @@ lógico: https://app.brmodeloweb.com/#!/publicview/69e0fdb1e7f0a96088a4d95c
 ## Pet_Etec:
 conceitual: https://app.brmodeloweb.com/#!/publicview/69e0fdbce7f0a96088a4d965
 
-lógico: https://app.brmodeloweb.com/#!/publicview/69e0fe2ce7f0a96088a4d9ab
+lógico: https://app.brmodeloweb.com/#!/publicview/69e0fe71e7f0a96088a4d9d6
