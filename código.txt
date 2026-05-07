@@ -1,0 +1,64 @@
+CREATE TABLE Estilo 
+( 
+ id_estilo INT PRIMARY KEY,  
+ estilo INT,  
+); 
+
+CREATE TABLE Tatuador 
+( 
+ id_tatuador INT PRIMARY KEY,  
+ idAgendamento INT,  
+ email INT,  
+ cpf INT,  
+ nome_tatuador INT,  
+ telefone INT,  
+ data_contrat INT,  
+); 
+
+CREATE TABLE Agendamento 
+( 
+ id_agenda INT PRIMARY KEY,  
+ data_agenda INT,  
+ hora_agenda INT,  
+ status INT,  
+ valor_tatuagem INT,  
+ descricao_tatuagem INT,  
+ desenhoaprovado INT,  
+); 
+
+CREATE TABLE Cliente 
+( 
+ idcliente INT PRIMARY KEY,  
+ idAgendamento INT,  
+ nome_completo INT,  
+ telefone INT,  
+ data_nasc INT,  
+ cpf INT,  
+ uf INT,  
+); 
+
+CREATE TABLE senioridade 
+( 
+ codsenioridade INT PRIMARY KEY,  
+ nome INT,  
+); 
+
+CREATE TABLE possui 
+( 
+ id_tatuador INT PRIMARY KEY,  
+ id_estilo INT PRIMARY KEY,  
+ dataestilo INT,  
+); 
+
+CREATE TABLE possui1 
+( 
+ codsenioridade INT PRIMARY KEY,  
+ idcliente INT PRIMARY KEY,  
+); 
+
+ALTER TABLE Tatuador ADD FOREIGN KEY(idAgendamento) REFERENCES Agendamento (idAgendamento)
+ALTER TABLE Cliente ADD FOREIGN KEY(idAgendamento) REFERENCES Agendamento (idAgendamento)
+ALTER TABLE possui ADD FOREIGN KEY(id_tatuador) REFERENCES Tatuador (id_tatuador)
+ALTER TABLE possui ADD FOREIGN KEY(id_estilo) REFERENCES Estilo (id_estilo)
+ALTER TABLE possui1 ADD FOREIGN KEY(codsenioridade) REFERENCES senioridade (codsenioridade)
+ALTER TABLE possui1 ADD FOREIGN KEY(idcliente) REFERENCES Cliente (idcliente)
