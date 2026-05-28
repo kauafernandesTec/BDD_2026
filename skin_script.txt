@@ -1,0 +1,81 @@
+CREATE TABLE Estilo 
+( 
+ id_estilo INT PRIMARY KEY,  
+ estilo VARCHAR(100)
+); 
+
+CREATE TABLE Tatuador 
+( 
+ id_tatuador INT PRIMARY KEY,  
+ idAgendamento INT,  
+ email VARCHAR(100),  
+ cpf CHAR(11),  
+ nome_tatuador VARCHAR(100),  
+ telefone INT,  
+ data_contrat DATE
+); 
+
+CREATE TABLE Agendamento 
+( 
+ id_agenda INT PRIMARY KEY,  
+ data_agenda DATE,  
+ hora_agenda TIME,  
+ status VARCHAR(50),  
+ valor_tatuagem DECIMAL(10,2),  
+ descricao_tatuagem TEXT,  
+ desenhoaprovado BOOLEAN
+); 
+
+CREATE TABLE Cliente 
+( 
+ idcliente INT PRIMARY KEY,  
+ idAgendamento INT,  
+ nome_completo VARCHAR(150),  
+ telefone INT,  
+ data_nasc DATE,  
+ cpf CHAR(11),  
+ uf CHAR(2)
+); 
+
+CREATE TABLE senioridade 
+( 
+ codsenioridade INT PRIMARY KEY,  
+ nome VARCHAR(50)
+); 
+
+CREATE TABLE possui 
+( 
+ id_tatuador INT,  
+ id_estilo INT,  
+ dataestilo DATE
+); 
+
+CREATE TABLE possui1 
+( 
+ codsenioridade INT,  
+ idcliente INT
+); 
+
+ALTER TABLE Tatuador 
+ADD FOREIGN KEY(idAgendamento) 
+REFERENCES Agendamento(id_agenda);
+
+ALTER TABLE Cliente 
+ADD FOREIGN KEY(idAgendamento) 
+REFERENCES Agendamento(id_agenda);
+
+ALTER TABLE possui 
+ADD FOREIGN KEY(id_tatuador) 
+REFERENCES Tatuador(id_tatuador);
+
+ALTER TABLE possui 
+ADD FOREIGN KEY(id_estilo) 
+REFERENCES Estilo(id_estilo);
+
+ALTER TABLE possui1 
+ADD FOREIGN KEY(codsenioridade) 
+REFERENCES senioridade(codsenioridade);
+
+ALTER TABLE possui1 
+ADD FOREIGN KEY(idcliente) 
+REFERENCES Cliente(idcliente);
