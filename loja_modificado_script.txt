@@ -1,0 +1,135 @@
+Microsoft Windows [versão 10.0.19045.5131]
+(c) Microsoft Corporation. Todos os direitos reservados.
+
+C:\Users\Aluno>cd C:\xampp\mysql\bin
+
+C:\xampp\mysql\bin>mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 36
+Server version: 10.4.27-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use loja
+ERROR 1049 (42000): Unknown database 'loja'
+MariaDB [(none)]> use loja
+Database changed
+MariaDB [loja]> select * from categoria
+    -> ;
+ERROR 1146 (42S02): Table 'loja.categoria' doesn't exist
+MariaDB [loja]> select * from categorias;
++--------------+-------------+
+| id_categoria | categoria   |
++--------------+-------------+
+|            1 | Eletrônicos |
+|            2 | Roupas      |
+|            3 | Padaria     |
+|            4 | Açougue     |
+|            5 | Limpeza     |
++--------------+-------------+
+5 rows in set (0.001 sec)
+
+MariaDB [loja]> describe produtos
+    -> ;
+ERROR 1146 (42S02): Table 'loja.produtos' doesn't exist
+MariaDB [loja]> describe produto
+    -> ;
++--------------+---------------+------+-----+---------+----------------+
+| Field        | Type          | Null | Key | Default | Extra          |
++--------------+---------------+------+-----+---------+----------------+
+| id_produto   | int(11)       | NO   | PRI | NULL    | auto_increment |
+| nome         | varchar(255)  | NO   |     | NULL    |                |
+| preco        | decimal(10,2) | NO   |     | NULL    |                |
+| quantidade   | int(11)       | NO   |     | NULL    |                |
+| marca        | varchar(255)  | NO   |     | NULL    |                |
+| observacoes  | varchar(255)  | YES  |     | NULL    |                |
+| id_categoria | int(11)       | YES  | MUL | NULL    |                |
++--------------+---------------+------+-----+---------+----------------+
+7 rows in set (0.013 sec)
+
+MariaDB [loja]> ;
+ERROR: No query specified
+
+MariaDB [loja]> insert into produto (nome, preco, quantidade, marca, observacoes, id_categoria) values
+    -> ('pão frances', 1.00, 100, 'Panutti', 3);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [loja]> ('pão frances',1.00,100,'Panutti',3);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''pão frances',1.00,100,'Panutti',3)' at line 1
+MariaDB [loja]> ('pão frances',1.00,100,'Panutti',3);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''pão frances',1.00,100,'Panutti',3)' at line 1
+MariaDB [loja]> insert into produto (nome, preco, quantidade, marca, observacoes, id_categoria) values
+    -> ('pão frances',1.00,100,'Panutti',3);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [loja]> insert into produto (nome, preco, quantidade, marca, observacoes, id_categoria) values
+    -> ('pão frances', 1.50, 10, 'panutti', 3);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [loja]> insert into produto (nome, preco, quantidade, marca, observacoes, id_categoria) values
+    -> ('pão frances',1.50,10,'panutti',3);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [loja]> insert into produto (nome, preco, quantidade, marca, observacoes, id_categoria) values
+    -> ('pão frances',1.50,10,'panutti', '', 3);
+Query OK, 1 row affected (0.013 sec)
+
+MariaDB [loja]> insert into produto (nome, preco, quantidade, marca, observacoes, id_categoria) values
+    -> ('sonho',2.50,10,'panutti', '', 3);
+Query OK, 1 row affected (0.014 sec)
+
+MariaDB [loja]> insert into produto (nome, preco, quantidade, marca, observacoes, id_categoria) values
+    -> ('regatas',100.00,200,'nike', '', 2);
+Query OK, 1 row affected (0.007 sec)
+
+MariaDB [loja]> insert into produto (nome, preco, quantidade, marca, observacoes, id_categoria) values
+    -> ('boné',80.00,100,'lacoste', '', 2);
+Query OK, 1 row affected (0.015 sec)
+
+MariaDB [loja]> insert into produto (nome, preco, quantidade, marca, observacoes, id_categoria) values
+    -> ('celular',1500.00,800,'apple', '', 1);
+Query OK, 1 row affected (0.014 sec)
+
+MariaDB [loja]> ('mouse',200.00,100,'attack shark', 'mouse bluetooth', 1);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''mouse',200.00,100,'attack shark', 'mouse bluetooth', 1)' at line 1
+MariaDB [loja]> insert into produto (nome, preco, quantidade, marca, observacoes, id_categoria) values
+    -> ('mouse',200.00,100,'attack shark', '', 1);
+Query OK, 1 row affected (0.014 sec)
+
+MariaDB [loja]> insert into produto (nome, preco, quantidade, marca, observacoes, id_categoria) values
+    -> ('picanha',70.00,100,'friboi', '', 4);
+Query OK, 1 row affected (0.016 sec)
+
+MariaDB [loja]> insert into produto (nome, preco, quantidade, marca, observacoes, id_categoria) values
+    -> ('linguiça',30.00,100,'aurora', '', 4);
+Query OK, 1 row affected (0.013 sec)
+
+MariaDB [loja]> insert into produto (nome, preco, quantidade, marca, observacoes, id_categoria) values
+    -> ('desinfetante',8.00,150,'pinho sol', '', 5);
+Query OK, 1 row affected (0.012 sec)
+
+MariaDB [loja]> insert into produto (nome, preco, quantidade, marca, observacoes, id_categoria) values
+    -> ('desengordurante',14.00,200,'veja', '', 5);
+Query OK, 1 row affected (0.013 sec)
+
+MariaDB [loja]> select from * produto;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'from * produto' at line 1
+MariaDB [loja]> select from * produto
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'from * produto' at line 1
+MariaDB [loja]> select * from produto;
++------------+-----------------+---------+------------+--------------+-------------+--------------+
+| id_produto | nome            | preco   | quantidade | marca        | observacoes | id_categoria |
++------------+-----------------+---------+------------+--------------+-------------+--------------+
+|          1 | pão frances     |    1.50 |         10 | panutti      |             |            3 |
+|          2 | sonho           |    2.50 |         10 | panutti      |             |            3 |
+|          3 | regatas         |  100.00 |        200 | nike         |             |            2 |
+|          4 | boné            |   80.00 |        100 | lacoste      |             |            2 |
+|          5 | celular         | 1500.00 |        800 | apple        |             |            1 |
+|          6 | mouse           |  200.00 |        100 | attack shark |             |            1 |
+|          7 | picanha         |   70.00 |        100 | friboi       |             |            4 |
+|          8 | linguiça        |   30.00 |        100 | aurora       |             |            4 |
+|          9 | desinfetante    |    8.00 |        150 | pinho sol    |             |            5 |
+|         10 | desengordurante |   14.00 |        200 | veja         |             |            5 |
++------------+-----------------+---------+------------+--------------+-------------+--------------+
+10 rows in set (0.001 sec)
+
+MariaDB [loja]>
