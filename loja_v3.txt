@@ -1,0 +1,184 @@
+Microsoft Windows [versão 10.0.19045.5131]
+(c) Microsoft Corporation. Todos os direitos reservados.
+
+C:\xampp\mysql\bin>mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 41
+Server version: 10.4.27-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use loja
+Database changed
+MariaDB [loja]> describe produto
+    -> ;
++--------------+---------------+------+-----+---------+----------------+
+| Field        | Type          | Null | Key | Default | Extra          |
++--------------+---------------+------+-----+---------+----------------+
+| id_produto   | int(11)       | NO   | PRI | NULL    | auto_increment |
+| nome         | varchar(255)  | NO   |     | NULL    |                |
+| preco        | decimal(10,2) | NO   |     | NULL    |                |
+| quantidade   | int(11)       | NO   |     | NULL    |                |
+| marca        | varchar(255)  | NO   |     | NULL    |                |
+| observacoes  | varchar(255)  | YES  |     | NULL    |                |
+| id_categoria | int(11)       | YES  | MUL | NULL    |                |
++--------------+---------------+------+-----+---------+----------------+
+7 rows in set (0.014 sec)
+
+MariaDB [loja]> select * from produto;
++------------+-----------------+---------+------------+--------------+-------------+--------------+
+| id_produto | nome            | preco   | quantidade | marca        | observacoes | id_categoria |
++------------+-----------------+---------+------------+--------------+-------------+--------------+
+|          1 | pão frances     |    1.50 |         10 | panutti      |             |            3 |
+|          2 | sonho           |    2.50 |         10 | panutti      |             |            3 |
+|          3 | regatas         |  100.00 |        200 | nike         |             |            2 |
+|          4 | boné            |   80.00 |        100 | lacoste      |             |            2 |
+|          5 | celular         | 1500.00 |        800 | apple        |             |            1 |
+|          6 | mouse           |  200.00 |        100 | attack shark |             |            1 |
+|          7 | picanha         |   70.00 |        100 | friboi       |             |            4 |
+|          8 | linguiça        |   30.00 |        100 | aurora       |             |            4 |
+|          9 | desinfetante    |    8.00 |        150 | pinho sol    |             |            5 |
+|         10 | desengordurante |   14.00 |        200 | veja         |             |            5 |
++------------+-----------------+---------+------------+--------------+-------------+--------------+
+10 rows in set (0.001 sec)
+
+MariaDB [loja]> select nome, preco from produto;
++-----------------+---------+
+| nome            | preco   |
++-----------------+---------+
+| pão frances     |    1.50 |
+| sonho           |    2.50 |
+| regatas         |  100.00 |
+| boné            |   80.00 |
+| celular         | 1500.00 |
+| mouse           |  200.00 |
+| picanha         |   70.00 |
+| linguiça        |   30.00 |
+| desinfetante    |    8.00 |
+| desengordurante |   14.00 |
++-----------------+---------+
+10 rows in set (0.001 sec)
+
+MariaDB [loja]> select * from produto where marca = 'panutti';
++------------+-------------+-------+------------+---------+-------------+--------------+
+| id_produto | nome        | preco | quantidade | marca   | observacoes | id_categoria |
++------------+-------------+-------+------------+---------+-------------+--------------+
+|          1 | pão frances |  1.50 |         10 | panutti |             |            3 |
+|          2 | sonho       |  2.50 |         10 | panutti |             |            3 |
++------------+-------------+-------+------------+---------+-------------+--------------+
+2 rows in set (0.001 sec)
+
+MariaDB [loja]> select * from produto where preco > 10;
++------------+-----------------+---------+------------+--------------+-------------+--------------+
+| id_produto | nome            | preco   | quantidade | marca        | observacoes | id_categoria |
++------------+-----------------+---------+------------+--------------+-------------+--------------+
+|          3 | regatas         |  100.00 |        200 | nike         |             |            2 |
+|          4 | boné            |   80.00 |        100 | lacoste      |             |            2 |
+|          5 | celular         | 1500.00 |        800 | apple        |             |            1 |
+|          6 | mouse           |  200.00 |        100 | attack shark |             |            1 |
+|          7 | picanha         |   70.00 |        100 | friboi       |             |            4 |
+|          8 | linguiça        |   30.00 |        100 | aurora       |             |            4 |
+|         10 | desengordurante |   14.00 |        200 | veja         |             |            5 |
++------------+-----------------+---------+------------+--------------+-------------+--------------+
+7 rows in set (0.001 sec)
+
+MariaDB [loja]> select * from produto where quantidade <= 60;
++------------+-------------+-------+------------+---------+-------------+--------------+
+| id_produto | nome        | preco | quantidade | marca   | observacoes | id_categoria |
++------------+-------------+-------+------------+---------+-------------+--------------+
+|          1 | pão frances |  1.50 |         10 | panutti |             |            3 |
+|          2 | sonho       |  2.50 |         10 | panutti |             |            3 |
++------------+-------------+-------+------------+---------+-------------+--------------+
+2 rows in set (0.001 sec)
+
+MariaDB [loja]> select * from produto order by preco asc limit 5;
++------------+-----------------+-------+------------+-----------+-------------+--------------+
+| id_produto | nome            | preco | quantidade | marca     | observacoes | id_categoria |
++------------+-----------------+-------+------------+-----------+-------------+--------------+
+|          1 | pão frances     |  1.50 |         10 | panutti   |             |            3 |
+|          2 | sonho           |  2.50 |         10 | panutti   |             |            3 |
+|          9 | desinfetante    |  8.00 |        150 | pinho sol |             |            5 |
+|         10 | desengordurante | 14.00 |        200 | veja      |             |            5 |
+|          8 | linguiça        | 30.00 |        100 | aurora    |             |            4 |
++------------+-----------------+-------+------------+-----------+-------------+--------------+
+5 rows in set (0.000 sec)
+
+MariaDB [loja]> select * from produto order by preco desc limit 5;
++------------+---------+---------+------------+--------------+-------------+--------------+
+| id_produto | nome    | preco   | quantidade | marca        | observacoes | id_categoria |
++------------+---------+---------+------------+--------------+-------------+--------------+
+|          5 | celular | 1500.00 |        800 | apple        |             |            1 |
+|          6 | mouse   |  200.00 |        100 | attack shark |             |            1 |
+|          3 | regatas |  100.00 |        200 | nike         |             |            2 |
+|          4 | boné    |   80.00 |        100 | lacoste      |             |            2 |
+|          7 | picanha |   70.00 |        100 | friboi       |             |            4 |
++------------+---------+---------+------------+--------------+-------------+--------------+
+5 rows in set (0.001 sec)
+
+MariaDB [loja]> select count(*) as total_produtos from produto;
++----------------+
+| total_produtos |
++----------------+
+|             10 |
++----------------+
+1 row in set (0.000 sec)
+
+MariaDB [loja]> select avg(preco) as preco_medio from produto;
++-------------+
+| preco_medio |
++-------------+
+|  200.600000 |
++-------------+
+1 row in set (0.001 sec)
+
+MariaDB [loja]> describe categorias;
++--------------+--------------+------+-----+---------+----------------+
+| Field        | Type         | Null | Key | Default | Extra          |
++--------------+--------------+------+-----+---------+----------------+
+| id_categoria | int(11)      | NO   | PRI | NULL    | auto_increment |
+| categoria    | varchar(255) | YES  |     | NULL    |                |
++--------------+--------------+------+-----+---------+----------------+
+2 rows in set (0.023 sec)
+
+MariaDB [loja]> select p.nome, c.categoria from produto p join categorias c on p.id_categoria = c.id_categoria;
++-----------------+-------------+
+| nome            | categoria   |
++-----------------+-------------+
+| celular         | Eletrônicos |
+| mouse           | Eletrônicos |
+| regatas         | Roupas      |
+| boné            | Roupas      |
+| pão frances     | Padaria     |
+| sonho           | Padaria     |
+| picanha         | Açougue     |
+| linguiça        | Açougue     |
+| desinfetante    | Limpeza     |
+| desengordurante | Limpeza     |
++-----------------+-------------+
+10 rows in set (0.001 sec)
+
+MariaDB [loja]> select p.nome, p.marca, p.preco from produto p join categorias c on p.id_categoria = c.id_categoria where c.categoria = 'Padaria'
+    -> ;
++-------------+---------+-------+
+| nome        | marca   | preco |
++-------------+---------+-------+
+| pão frances | panutti |  1.50 |
+| sonho       | panutti |  2.50 |
++-------------+---------+-------+
+2 rows in set (0.001 sec)
+
+MariaDB [loja]> select c.categoria, count(*) as total_produtos from produto p join categorias c on p.id_categoria = c.id_categoria group by c.categoria;
++-------------+----------------+
+| categoria   | total_produtos |
++-------------+----------------+
+| Açougue     |              2 |
+| Eletrônicos |              2 |
+| Limpeza     |              2 |
+| Padaria     |              2 |
+| Roupas      |              2 |
++-------------+----------------+
+5 rows in set (0.001 sec)
+
+MariaDB [loja]>
