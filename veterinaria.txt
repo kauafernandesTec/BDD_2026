@@ -1,0 +1,51 @@
+CREATE TABLE cliente (
+    idcliente int AUTO_INCREMENT PRIMARY KEY,
+    nomecli varchar(255) not null,
+    telefone varchar(255) not null,
+    email varchar(100) UNIQUE not null,
+    cpf varchar(100) UNIQUE not null,
+    endereço varchar(100));
+
+CREATE TABLE veterinarios (
+    idvet int AUTO_INCREMENT PRIMARY KEY,
+    nomevet varchar(255) not null,
+    telefone varchar(255) not null,
+    especialidade varchar(100) UNIQUE not null,
+    crmv varchar(100) UNIQUE not null);
+
+CREATE TABLE animais (
+    idani int AUTO_INCREMENT PRIMARY KEY,
+    idcliente int,
+    nomeanimal varchar(255) not null,
+    especie varchar(255) not null,
+    raca varchar(100) not null,
+    datanascimento date not null,
+    FOREIGN KEY(idcliente) REFERENCES cliente(idcliente));
+    
+CREATE TABLE atendimentos (
+    idate int AUTO_INCREMENT PRIMARY KEY,
+    idanimal int,
+    idveterinario int,
+    dataatendimento date not null,
+    horaatendimento time not null,
+    descricao varchar(255) not null,
+    valor decimal(7,2) not null,
+    FOREIGN KEY(idanimal) REFERENCES animais(idani),
+    FOREIGN KEY(idveterinario) REFERENCES veterinarios(idvet));
+
+INSERT INTO cliente (nomecli, telefone, endereco, cpf, email) values
+('Kauã Fernandes','11 99329-7551','Rua Belterra, num 291, Santo Amaro - SP','487.486.838-09','kaua.fernandestec@gmail.com'),
+('Artur Pra','11 96376-8761','Rua Duque, num 67, Ribeirão Pires - SP','297.387.839-07','artur.pra@gmail.com'),
+('Livia Maria','11 99119-8067','Rua Itapira, num 69, Palmeiras - SP','321.455.221-09','livia.lgd@gmail.com');
+
+INSERT INTO animais (nomeanimal, datanascimento, especie, raca, idcliente) VALUES
+('Bilu','2017-07-26','Cachorro','Shih Tzu',1),
+('Brady','2015-03-10','Gato','SRD',1),
+('Amarildo','2019-02-20','Cachorro','Bulldog',2),
+('Billy','2024-01-19','Cachorro','Shih Tzu',2),
+('Davi Brito','2017-07-26','Cavalo','Mangalarga',3),
+('Bolsonaro','2019-01-01','Cachorro','Golden Retriever',3);
+
+
+
+
