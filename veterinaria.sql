@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 30/07/2026 às 17:26
+-- Tempo de geração: 06/08/2026 às 17:23
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -66,6 +66,20 @@ CREATE TABLE `atendimentos` (
   `valor` decimal(7,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `atendimentos`
+--
+
+INSERT INTO `atendimentos` (`idate`, `idanimal`, `idveterinario`, `dataatendimento`, `horaatendimento`, `descricao`, `valor`) VALUES
+(1, 1, 1, '2026-08-27', '09:00:00', 'O animal foi atendido apresentando um ferimento profundo na pata, que necessitava de intervenção cirúrgica. Após a avaliação clínica e a realização dos exames necessários, foi realizada a cirurgia para limpeza, reparação dos tecidos e sutura do local.', 250.00),
+(2, 1, 3, '2026-08-31', '12:00:00', 'O animal foi atendido apresentando vermelhidão, lacrimejamento excessivo e dificuldade para manter o olho aberto. Após o exame oftalmológico, foi diagnosticada uma irritação ocular. Foi realizada a limpeza da região afetada e prescritos colírios para o tr', 100.00),
+(3, 3, 2, '2026-09-11', '16:00:00', 'O animal foi atendido apresentando dificuldade para apoiar a pata traseira e sinais de dor ao caminhar após uma queda. Durante o exame ortopédico, foi constatada uma suspeita de fratura. A pata foi imobilizada para evitar agravamento da lesão.', 300.00),
+(4, 6, 1, '2026-09-25', '14:00:00', 'Um cachorro foi atendido com um pequeno ferimento no abdômen após um acidente. Após a avaliação clínica, foi realizada uma cirurgia para limpeza e sutura da lesão. O procedimento ocorreu sem complicações, e o tutor recebeu orientações sobre os cuidados pó', 800.00),
+(5, 3, 3, '2026-08-24', '19:00:00', 'Um cão da raça Bulldog foi atendido com irritação e vermelhidão no olho. Após a avaliação, foi realizada a limpeza da região e aplicado um colírio para o tratamento. O tutor foi orientado sobre os cu', 600.00),
+(6, 2, 3, '2026-10-08', '20:00:00', 'Um gato foi atendido apresentando secreção e vermelhidão em um dos olhos. Após a avaliação, foi realizada a limpeza da região e aplicada a medicação adequada. O tutor recebeu orientações sobre os cuidados em casa e o uso do colírio conforme prescrição.', 100.00),
+(7, 4, 1, '2026-08-23', '10:30:00', 'Um cachorro foi atendido com um corte profundo na pata após um acidente. Após a avaliação, foi realizada uma cirurgia para limpeza do ferimento e aplicação de pontos. O procedimento foi concluído com sucesso, e o tutor recebeu orientações sobre os cuidado', 800.00),
+(8, 5, 2, '2026-09-25', '13:00:00', 'Um cavalo foi atendido apresentando dificuldade para caminhar após uma lesão na pata dianteira. Após a avaliação, foi identificada uma lesão ortopédica, sendo realizado o tratamento inicial com imobilização e medicação para alívio da dor. O responsável re', 350.00);
+
 -- --------------------------------------------------------
 
 --
@@ -87,7 +101,7 @@ CREATE TABLE `cliente` (
 
 INSERT INTO `cliente` (`idcliente`, `nomecli`, `telefone`, `email`, `cpf`, `endereco`) VALUES
 (1, 'Kauã Fernandes', '11 99329-7551', 'kaua.fernandestec@gmail.com', '487.486.838-09', 'Rua Belterra, num 291, Santo Amaro - SP'),
-(2, 'Artur Pra', '11 96376-8761', 'artur.pra@gmail.com', '297.387.839-07', 'Rua Duque, num 67, Ribeirão Pires - SP'),
+(2, 'Artur Pra', '11 96376-8761', 'artur.pra@gmail.com', '297.387.839-07', 'Rua General Osório, 37, São Paulo - SP'),
 (3, 'Livia Maria', '11 99119-8067', 'livia.lgd@gmail.com', '321.455.221-09', 'Rua Itapira, num 69, Palmeiras - SP');
 
 -- --------------------------------------------------------
@@ -161,7 +175,7 @@ ALTER TABLE `animais`
 -- AUTO_INCREMENT de tabela `atendimentos`
 --
 ALTER TABLE `atendimentos`
-  MODIFY `idate` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idate` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `cliente`
